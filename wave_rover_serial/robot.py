@@ -2,7 +2,6 @@ import json
 import time
 import serial
 
-
 DEFAULT_BAUD_RATE = 1000000
 DEFAULT_TIMEOUT = 1
 
