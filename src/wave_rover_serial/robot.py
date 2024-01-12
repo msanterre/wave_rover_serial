@@ -21,18 +21,18 @@ class Robot:
         self.serial_connection = None
 
     def connect(self):
-            """
-            Establishes a serial connection to the robot.
-            """
-            try:
-                self.serial_connection = serial.Serial(
-                    port=self.port,
-                    baudrate=self.baud_rate,
-                    timeout=self.timeout
-                )
-                print(f"Connected to {self.port} at {self.baud_rate} baud.")
-            except serial.SerialException as e:
-                print(f"Failed to connect to {self.port}: {e}")
+        """
+        Establishes a serial connection to the robot.
+        """
+        try:
+            self.serial_connection = serial.Serial(
+                port=self.port,
+                baudrate=self.baud_rate,
+                timeout=self.timeout
+            )
+            print(f"Connected to {self.port} at {self.baud_rate} baud.")
+        except serial.SerialException as e:
+            print(f"Failed to connect to {self.port}: {e}")
 
     def disconnect(self):
         """

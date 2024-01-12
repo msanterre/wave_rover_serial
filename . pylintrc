@@ -1,0 +1,22 @@
+[MESSAGES CONTROL]
+
+# Disables specific error and warning messages
+disable=
+    trailing-newlines,
+    missing-module-docstring,
+    line-too-long,
+    import-error,
+    missing-class-docstring,
+    redefined-builtin,
+    too-many-public-methods,
+    wrong-import-order
+
+[MASTER]
+
+# Set the maximum number of characters on a single line.
+max-line-length=120
+
+[FORMAT]
+
+# Set indentation style
+indent-string='    '
