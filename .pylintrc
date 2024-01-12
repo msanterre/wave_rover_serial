@@ -4,7 +4,6 @@
 disable=
     trailing-newlines,
     missing-module-docstring,
-    line-too-long,
     import-error,
     missing-class-docstring,
     redefined-builtin,
