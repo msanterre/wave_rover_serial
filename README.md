@@ -38,12 +38,26 @@ robot.connect()
 robot.speed_input(left_speed=100, right_speed=100)
 
 # Send a command to get the IMU information and read the response
-robot.imu_info()
-data = robot.read_json()
+data = robot.imu_info()
 print(data)
 
 # Safely disconnect when done
 robot.disconnect()
+```
+
+You can also use the `with` statement to automatically connect and disconnect from the robot:
+
+```python
+from wave_rover_serial import Robot
+
+# Initialize the Robot with the appropriate serial port and baud rate
+with Robot('/dev/ttyUSB0', 9600, 1) as robot:
+    # Send a command to set motor speeds
+    robot.speed_input(left_speed=100, right_speed=100)
+
+    # Send a command to get the IMU information and read the response
+    data = robot.imu_info()
+    print(data)
 ```
 
 ## Documentation
