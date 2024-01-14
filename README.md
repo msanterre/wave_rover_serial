@@ -2,6 +2,10 @@
 
 `wave_rover_serial` is a Python package designed for controlling and interacting with the Wave Rover robotic systems via serial communication. It offers a comprehensive set of functionalities to command various aspects of the robot, including movement, servo control, sensor data acquisition, and wireless communication management.
 
+## References
+
+https://www.waveshare.com/wiki/WAVE_ROVER
+
 ## Features
 
 - Control motor speeds, servo angles, and other robotic components.
