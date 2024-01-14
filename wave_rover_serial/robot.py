@@ -22,7 +22,7 @@ class Robot:
 
     def __enter__(self):
         self.connect()
-        return self.file
+        return self
 
     def __exit__(self, *args):
         self.disconnect()
