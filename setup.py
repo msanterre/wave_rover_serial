@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='wave_rover_serial',
-    version='0.3',
+    version='0.4',
     packages=find_packages(),
     description='A package to simplify the wave rover serial communication',
     long_description=open('README.md').read(),

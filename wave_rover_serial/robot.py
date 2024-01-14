@@ -20,6 +20,13 @@ class Robot:
         self.timeout = timeout
         self.serial_connection = None
 
+    def __enter__(self):
+        self.connect()
+        return self.file
+
+    def __exit__(self, *args):
+        self.disconnect()
+
     def connect(self):
         """
         Establishes a serial connection to the robot.
@@ -74,6 +81,34 @@ class Robot:
                 char = self.serial_connection.read().decode('utf-8')
                 read_data += char
                 if char == '}':
+                    break
+
+        return read_data
+
+    def readline(self, stop_char='\n', timeout=1.0):
+        """
+        Reads data from the serial port until the stop character is encountered or until timeout.
+        Parameters:
+        stop_char (str): Character to stop reading at.
+        timeout (float): Maximum time to wait for data in seconds.
+        Returns:
+        str: The data read from the serial port.
+        """
+        if not self.serial_connection or not self.serial_connection.is_open:
+            print("Serial connection not established.")
+            return ""
+
+        start_time = time.time()
+        read_data = ""
+        while True:
+            if time.time() - start_time > timeout:
+                print("Read timeout.")
+                break
+
+            if self.serial_connection.in_waiting > 0:
+                char = self.serial_connection.read().decode('utf-8')
+                read_data += char
+                if char == stop_char:
                     break
 
         return read_data
@@ -162,6 +197,7 @@ class Robot:
         """
         command = {"T": 52, "num": num}
         self.send_command(command)
+        return self.read_json()
 
     def bus_servo_info(self, id):
         """
@@ -171,6 +207,7 @@ class Robot:
         """
         command = {"T": 53, "id": id}
         self.send_command(command)
+        return self.read_json()
 
     def bus_servo_id_set(self, old_id, new_id):
         """
@@ -239,6 +276,7 @@ class Robot:
         """
         command = {"T": 65}
         self.send_command(command)
+        return self.read_json()
 
     def wifi_off(self):
         """
@@ -253,6 +291,7 @@ class Robot:
         """
         command = {"T": 70}
         self.send_command(command)
+        return self.read_json()
 
     def imu_info(self):
         """
@@ -260,6 +299,7 @@ class Robot:
         """
         command = {"T": 71}
         self.send_command(command)
+        return self.read_json()
 
     def encoder_info(self):
         """
@@ -267,6 +307,7 @@ class Robot:
         """
         command = {"T": 73}
         self.send_command(command)
+        return self.read_json()
 
     def device_info(self):
         """
@@ -274,6 +315,7 @@ class Robot:
         """
         command = {"T": 74}
         self.send_command(command)
+        return self.read_json()
 
     def io_ir_cut(self, status):
         """
@@ -300,6 +342,7 @@ class Robot:
         """
         command = {"T": 902}
         self.send_command(command)
+        return self.read_json()
 
     def spd_rate_save(self):
         """
@@ -314,6 +357,7 @@ class Robot:
         """
         command = {"T": 904}
         self.send_command(command)
+        return self.read_json()
 
     def nvs_clear(self):
         """
