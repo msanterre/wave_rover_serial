@@ -33,7 +33,7 @@ Here's a quick example of how to use the wave_rover_serial package:
 from wave_rover_serial import Robot
 
 # Initialize the Robot with the appropriate serial port and baud rate
-robot = Robot('/dev/ttyUSB0', 9600, 1)
+robot = Robot('/dev/ttyUSB0')
 
 # Connect to the robot
 robot.connect()
@@ -55,7 +55,7 @@ You can also use the `with` statement to automatically connect and disconnect fr
 from wave_rover_serial import Robot
 
 # Initialize the Robot with the appropriate serial port and baud rate
-with Robot('/dev/ttyUSB0', 9600, 1) as robot:
+with Robot('/dev/ttyUSB0') as robot:
     # Send a command to set motor speeds
     robot.speed_input(left_speed=100, right_speed=100)
 
